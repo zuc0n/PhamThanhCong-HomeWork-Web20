@@ -1,0 +1,29 @@
+h1, 
+.text-red {
+    color: red;
+}
+
+#top{
+    font-size: 200%;
+}
+
+
+[type="text"]{
+    color: aqua;
+}
+
+ul li {
+    color: blue;
+}
+
+ul > li {
+    color: red;
+}
+
+p:hover{
+    background: violet;
+}
+
+input:focus{
+    background: orange;
+}
