@@ -1,7 +1,5 @@
 const fs = require('fs'); //gan thu vien vao 1 bien const
 
-
-
 console.log("Begin");
 // fs.writeFile("text.txt", "Hello World", function(error){
 //     if(error) console.log(err)

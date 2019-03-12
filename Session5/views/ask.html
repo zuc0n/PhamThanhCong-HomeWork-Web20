@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <script>
+        function countWords(text, counter, max) {
+            if (text.value.lenght > max){
+                text.value = text.value.substring(0,max);
+            } else counter.maxx = max - text.value.lenght;
+        }
+    </script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ask Something</title>
+</head>
+<body>
+    <nav>
+        <a href="/ask">Quick Ask</a>
+        <a href="/answers">Quick Answers</a>  
+    </nav>
+    <h1>Hãy hỏi cộng đồng một câu hỏi đúng/sai hoặc có/không.</h1>
+    <form method="POST" action="http://localhost:6996/addquestion">
+        <textarea name="question" id="questionInput" cols="30" rows="10" maxlength=""></textarea><br>
+        <span id="remainChar">Còn 200/200 ký tự</span>
+        <button>Gửi</button>
+    </form>
+
+    <script>
+        const questionInput = document.getElementById('questionInput');
+         questionInput.addEventListener("input", () => {
+            if(questionInput.value.length > 200){
+            questionInput.value = questionInput.value.substring(0,200);
+        };
+            const remainWords = 200 - questionInput.value.length;
+            document.getElementById("remainChar").innerText = "Còn "+ remainWords + "/200 ký tự";
+        });
+
+        
+    </script>
+</body>
+</html>
