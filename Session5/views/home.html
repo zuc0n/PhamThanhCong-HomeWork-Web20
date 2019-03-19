@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <script
+        src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <nav>
+        <a href="/ask">Quick Question</a>
+        <a href="/">Quick Answers</a>
+    </nav>
+        <h1></h1>
+        <a href="#" id="yes">
+            <button>Sai/Khong/Trai</button>
+        </a>
+        <a href="#" id="no">
+            <button>Dung/Co/Phai</button>
+        </a>
+        
+        <button>Ket qua vote</button>
+        <button id="changeQuestion">Cau hoi khac</button>
+    <!--
+          $('#yes').attr("href", `/vote/${que}`);
+        $('#no').attr("href", "aaaaa");
+
+         $('#yes, #no').on("click", function(event){
+            console.log(event.target.id);
+            if(event.target.id == "yes"){
+                questionn.yes += 1;
+            }else{
+                questionn.no += 1;
+            }
+             $.ajax({
+                 url:'/editquestion',
+                 type: 'PUT', 
+                 data: questionn,
+                 success: function(data){
+                     console.log(data);
+                 }
+             })
+        });
+    -->
+
+    <script type="text/javascript" language="javascript">
+        let questionn;
+        $.ajax({
+             url: '/randomQuestion',
+             success: function(questionData){
+                 console.log(questionData)
+                 $('h1').text(questionData.content);
+                 $('#yes').atrr("href", `/vote/${questionData.id}/yes`);
+                 $('#no').atrr("href", `/vote/${questionData.id}/no`);
+                 questionn = questionData;
+             }
+         })        
+     </script>
+</body>
+</html>
