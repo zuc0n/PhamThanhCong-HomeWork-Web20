@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homepage</title>
+    <script
+        src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <img src="https://www.udemy.com/staticx/udemy/images/v6/logo-coral.svg" alt=""><br>
+    <div>
+        <input type="text" name="" id="keyword" placeholder="Tu khoa tim kiem...">
+        <button id="search">Tim kiem</button>
+    </div>
+    <div id="content"></div>
+
+
+    <!-- <script>
+         $("search").on('click', () => {
+            // event.preventDefault();
+            const keywords = $('kw').val();
+            $.ajax({
+                url: `https://api.techkids.vn/udemy/courses?search=${keywords}&page=1&page_size=12`,
+                success: function(data){
+                    console.log(data)
+                    for (let i = 0; i < 12; i++){
+                        const html = ` 
+                        <img src= "${data.results[i].visible_instructors[0].image_50x50}" alt="" id="img" ></img>
+                        <p>${data.results[i].title}</p>`
+                        $('content').append(html);
+                    }
+                }
+            })
+         })
+    </script> -->
+
+    <script>
+            $("#search").on("click", () => {
+                $("#content").html("");
+                const kw = $("#keyword").val();
+                $.ajax({
+                    url: `https://api.techkids.vn/udemy/courses?search=${kw}&page=1&page_size=12`,
+                    success: (data) => {
+                        const resultt = data.results;
+                        for(let i = 0; i < data.results.length;i++){
+                            const htmll = `
+                                <img src="${resultt[i].visible_instructors[0].image_50x50}" alt="" id="img">
+                                <p>Title: ${resultt[i].title} </p>
+                                <p>Price : ${resultt[i].price}</p>`;
+                            $("#content").append(htmll);
+                        };
+                        
+                    }
+                });
+            })
+
+            $(window).on('scroll')
+        </script>
+    
+</body>
+
+</html>

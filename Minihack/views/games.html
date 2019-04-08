@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Games</title>
+    <style>
+        h1{
+            margin-left: 269px;
+        }
+
+        input{
+            align-items: center;
+            border-color: #ff49ff;
+            border-radius: 5px;
+            text-align: center;
+            width: 500px;
+            height: 30px;
+            margin-top: 10px;
+            margin-bottom: 10px; 
+            
+        }
+        button{
+            background-color: red;
+            border-radius: 5px;
+            text-align: center;
+            width: 250px;
+            height: 30px;
+            color: white;
+        }
+        
+        input::placeholder{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>ScoreKeeper</h1>
+    <hr width="60%" size="1px" align="center"/>
+    <div>
+        <form action="PUT">
+            <input type="text" name="value" id="player1" placeholder="Player 1..."><br>
+            <input type="text" name="value" id="player2" placeholder="Player 2..."><br>
+            <input type="text" name="value" id="player3" placeholder="Player 3..."><br>
+            <input type="text" name="value" id="player4" placeholder="Player 4..."><br>
+            <button id="createNew" >CREATE NEW GAME</button>
+        </form>
+    </div>
+    
+</body>
+</html>
