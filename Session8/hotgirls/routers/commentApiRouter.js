@@ -4,9 +4,9 @@ const Router = express.Router;
 
 const commentApiRouter = Router();
 
-const CommentModel
+const CommentModel = require("../models/comment");
 // Create
-commentApiRouter.post('/', (req,res) => {
+commentApiRouter.post('/comment', (req,res) => {
     const {userId, content} = req.body;
     CommentModel.create(
         {userId, content},
@@ -17,7 +17,7 @@ commentApiRouter.post('/', (req,res) => {
     )
 });
 // Read
-commentApiRouter.get('/', (req,res) =>{
+commentApiRouter.get('/comment', (req,res) =>{
 
 });
 // Read One

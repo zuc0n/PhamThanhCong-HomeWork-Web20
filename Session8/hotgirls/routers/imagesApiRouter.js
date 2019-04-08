@@ -4,7 +4,7 @@ const Router = express.Router;
 
 const imagesApiRouter = Router();
 
-const ImageModel
+const ImageModel = require("../models/images"); 
 // Create
 imagesApiRouter.post('/', (req,res) => {
     // ImageModel.create({
@@ -15,13 +15,11 @@ imagesApiRouter.post('/', (req,res) => {
     //     titles: req.body.titles,
     //     author: mongoose.Types.ObjectId, ref: 'User',
     // })
-
-    const { link, title, author, description} = req.body;
     ImageModel.create(
-        { link, title, author, description},
+        req.body,
         (err, imageCreated) => {
             if(err) res.send({success: 0, err})
-            else res.send({success:1, data: imageCreated});
+            else res.send({success:1, data: imageCreated}); 
         }
     )
 });
@@ -34,19 +32,26 @@ imagesApiRouter.get('/', (req,res) => {
 });
 // Read one
 imagesApiRouter.get('/:id', (req,res) => {
-    imgId = req.param.id;
+    imgId = req.params.id;
     ImageModel.findById(imgId, (err, docs) =>{
         if(err) console.log(err)
         else console.log(docs);
     });
 });
 // Update
-imagesApiRouter.put('/', (req,res) => {
-    
+imagesApiRouter.put('/:id', (req,res) => {
+    imgId = req.params.id;
+    ImageModel.updateOne(imgId, {
+        links: req.body.links,
+        titles: req.body.titles,
+        description: req.body.description,
+        }
+    )
 });
 // Delete
-imagesApiRouter.del('/', (req,res) => {
-    
+imagesApiRouter.delete('/:id', (req,res) =>{
+    imgId = req.params.id;
+    ImageModel.deleteOne(imgId);
 });
 module.exports = imagesApiRouter;
 

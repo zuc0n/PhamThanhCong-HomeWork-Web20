@@ -4,7 +4,7 @@ const Router = express.Router;
 
 const userApiRouter = Router();
 
-const UserModel
+const UserModel = require("../models/user");
 // Create
 userApiRouter.post('/', (req,res) => {
     const {name, dob, passwords,location, account, gender} = req.body;
