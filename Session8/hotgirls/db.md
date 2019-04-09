@@ -7,7 +7,7 @@
     - titles:
     - userId:
 - Comments:
-    - imageId:
+    - commentId:
     - time:
     - userId:
     - content:

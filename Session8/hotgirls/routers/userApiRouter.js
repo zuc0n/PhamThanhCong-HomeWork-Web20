@@ -18,12 +18,44 @@ userApiRouter.post('/', (req,res) => {
 });
 // Read
 userApiRouter.get('/', (req,res) =>{
-    
+    UserModel.find({ }, (err,docs) => {
+        if(err) console.log(err)
+        else res.send(docs);
+    });
 });
 // Read One
-
+userApiRouter.get('/:id', (req,res) =>{
+    userId = req.params.id;
+    const userData = req.body;
+    UserModel.findById(userId, (err, userData) =>{
+      if(err) console.log(err)
+      else res.send(userData);  
+    });
+})
 // Update
-
+userApiRouter.put('/:id', (req,res) => {
+    userId = req.params.id;
+    const update = {
+        name: req.body.name,
+        dob: Date,
+        password: req.body.password,
+        location: req.body.location,
+        account: req.body.account,
+        gender: req.body.gender,
+    }
+    UserModel.updateOne({_id: userId}, update,
+        (err) =>{
+            if(err) console.log(err)
+            else res.send('Update');
+        }
+    )
+});
 // Delete
-
+userApiRouter.delete('/:id', (req,res) =>{
+    userId = req.params.id;
+    ImageModel.deleteOne({_id: userId}, (err) => {
+        if(err) console.log(err)
+        else res.send('Deleted');
+    });
+});
 module.exports = userApiRouter;

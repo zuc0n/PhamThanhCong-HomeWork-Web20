@@ -15,6 +15,8 @@ apiRouter.get("/",(req, res) =>{
 
 apiRouter.use('/images', imagesApiRouter);
 
-// apiRouter.use('/comment', commentApiRouter);
+apiRouter.use('/user', userApiRouter);
+
+apiRouter.use('/comment', commentApiRouter);
 
 module.exports = apiRouter
