@@ -24,9 +24,9 @@ class App extends Component {
     const {count} = this.state;
     return (
       <div> 
-        <button onClick={() => this.add()} className = 'button-1'> + </button>
+        <button className = "button1" onClick={() => this.add()} > + </button>
         <p className="count">{count}</p>
-        <button onClick={() => this.sub()} className = 'button-2'> - </button>
+        <button className = "button2" onClick={() => this.sub()} > - </button>
       </div>
     );
   }

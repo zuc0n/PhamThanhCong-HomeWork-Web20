@@ -11,10 +11,10 @@
     line-height: normal;
     text-align: center;
     color: #000000;
-};
+}
 
 
-.button-1 {
+.button1 {
     position: absolute;
     width: 40px;
     height: 40px;
@@ -22,10 +22,10 @@
     top: 229px; 
     background: #04A928;
     border-radius: 4px;
-};
+}
 
 
-.button-2 {
+.button2 {
     position: absolute;
     width: 40px;
     height: 40px;
@@ -33,4 +33,4 @@
     top: 229px;
     background: #B10202;
     border-radius: 4px;
-};
+}
