@@ -1,0 +1,22 @@
+.chip-background{
+    width: 80px;
+    height: 32px;
+    border-radius: 16px;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 32px;
+    margin-bottom: 8px; 
+    margin-left: 8px;
+};
+
+.Failed {
+    background-color: red;
+};
+
+.Untested {
+    background-color: grey;
+};
+
+.Passed {
+    background-color: green;
+};

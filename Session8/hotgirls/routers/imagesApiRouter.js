@@ -9,19 +9,36 @@ const ImageModel = require("../models/images");
 // Create
 imagesApiRouter.post('/', (req,res) => {
     ImageModel.create(
-        req.body,
-        (err, imageCreated) => {
-            if(err) res.send({success: 0, err})
-            else res.send({success:1, data: imageCreated}); 
-        }
-    )
+        req.body
+    ).then(imageCreated =>{
+        res.send({success:1, data: imageCreated}); 
+    })
+    .catch(err =>{
+        res.send({success: 0, err});
+    })
 });
 // Read
 imagesApiRouter.get('/', (req,res) => {
-    ImageModel.find({ }, (err, docs) =>{
-        if(err) console.log(err)
-        else res.send(docs);
-    });
+    const limit = req.query.perPage || 5;
+    const page = req.query.page || 0;
+    const skip = limit*(page-1);
+    
+    ImageModel.find({}, 
+      "link titles")
+    .populate({
+        path: "author",
+        //select: "name account" lua chon cac field nay
+        select: "-__v -_id -password" //loai bo cac field nay
+    })
+    .limit(limit)
+    .skip(skip)
+    .then(images)
+    .exec(
+        (err, images) => {
+            if(err) console.log(err)
+            else res.send(images);
+        }
+    );
 });
 // Read one
 imagesApiRouter.get('/:id', (req,res) => {

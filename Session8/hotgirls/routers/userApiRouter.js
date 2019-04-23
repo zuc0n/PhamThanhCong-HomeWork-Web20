@@ -4,17 +4,22 @@ const Router = express.Router;
 
 const userApiRouter = Router();
 
+const bcrypt = require("bcryptjs");
+
 const UserModel = require("../models/user");
 // Create
 userApiRouter.post('/', (req,res) => {
     const {name, dob, passwords,location, account, gender} = req.body;
+    
+    const salt = bcrypt.genSaltSync(10);
+    const hashPassword = bcrypt.hashSync(passwords, salt);
     UserModel.create(
-        {name, dob, passwords,location, account, gender},
+        {name, dob, passwords: hashPassword,location, account, gender},
         (err, userCreated) => {
             if(err) res.send({success: 0, err})
             else res.send({success:1, data: userCreated});
         }
-    )
+    )   
 });
 // Read
 userApiRouter.get('/', (req,res) =>{
@@ -38,7 +43,7 @@ userApiRouter.put('/:id', (req,res) => {
     const update = {
         name: req.body.name,
         dob: Date,
-        password: req.body.password,
+        password: req.body.passwords,
         location: req.body.location,
         account: req.body.account,
         gender: req.body.gender,
