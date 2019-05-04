@@ -1,7 +1,8 @@
 import React, { Component } from 'react'; 
 import './App.css';
 import './item.css';
-import Chip from './Chip';
+import Chip from './StudentItems/Chip';
+import StudentItem from './StudentItems';
 
 const data = [
   {
@@ -24,31 +25,26 @@ const data = [
 //   'Pham Thanh Cong',
 // ]
 
- const Item = (props) => {
-  return (
-    <div>
-      <div className= "item-name"> {props.name} </div> 
-      <Item text = {props.statusText} color = {props.statusColor} />
-    </div>
-  );
- };
+
 
 //  simpleData.map(
 //   (n, index) => (<div key = {index.toString()}> {n} </div>)
 // ) 
 
 class App extends Component {
+  renderStudentItem() {
+    return data.map((item, index) => (
+      <StudentItem 
+      name={item.name}
+      status={item.status}
+      key={index}
+      />
+    ))
+  }
   render() {
     return (
       <div>
-        {
-          data.map(
-            (n,index) => (<div key = {index.toString()}> 
-            {n.name},
-            <Item text = {n.status} className = {`${n.status}`}/>  
-            </div>)
-          )
-        }
+        {this.renderStudentItem()}
       </div> 
     );
   }
